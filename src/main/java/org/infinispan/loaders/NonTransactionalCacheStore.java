@@ -3,6 +3,8 @@ package org.infinispan.loaders;
 import org.infinispan.loaders.modifications.Modification;
 import org.infinispan.transaction.xa.GlobalTransaction;
 
+import java.util.List;
+
 /**
  * Implement this if your cache store does not have native XA capabilities.  Infinispan will then act as a transactional
  * proxy for the cache store and call the required transaction lifecycle callbacks when needed.
@@ -12,7 +14,7 @@ import org.infinispan.transaction.xa.GlobalTransaction;
  */
 public interface NonTransactionalCacheStore<K, V> extends CacheStore<K, V> {
 
-   void prepare(java.util.List<? extends Modification> modifications, GlobalTransaction transactionIdentifier, boolean b) throws CacheLoaderException;
+   void prepare(List<? extends Modification> modifications, GlobalTransaction transactionIdentifier, boolean onePhaseCommit) throws CacheLoaderException;
 
    void commit(GlobalTransaction transactionIdentifier) throws CacheLoaderException;
 

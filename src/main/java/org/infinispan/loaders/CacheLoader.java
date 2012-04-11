@@ -4,6 +4,8 @@ import org.infinispan.Cache;
 import org.infinispan.container.entries.InternalCacheEntry;
 import org.infinispan.marshall.StreamingMarshaller;
 
+import java.util.Set;
+
 /**
  * The new Infinispan CacheLoader interface.
  *
@@ -18,9 +20,9 @@ public interface CacheLoader<K, V> extends javax.cache.CacheLoader<K, V> {
    void init(CacheLoaderConfig cacheLoaderConfig, Cache<?,?> cache, StreamingMarshaller streamingMarshaller) throws CacheLoaderException;
 
    // TODO: Should we use Cache.Entry rather than InternalCacheEntry as per JSR 107 here?
-   java.util.Set<InternalCacheEntry> loadAll() throws CacheLoaderException;
+   Set<InternalCacheEntry> loadAll() throws CacheLoaderException;
 
-   java.util.Set<InternalCacheEntry> load(CacheLoaderFilter<K> filter) throws CacheLoaderException;
+   Set<InternalCacheEntry> load(CacheLoaderFilter<K> filter) throws CacheLoaderException;
 
    boolean containsKey(K key) throws CacheLoaderException;
 
